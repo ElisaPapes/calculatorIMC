@@ -1,0 +1,212 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  font-size: 62.5%;
+
+  /* Cores */
+  --tt-heading: #0C3440;
+  
+  --tt-label: #00453A;
+  --tt-input: #212529;
+  --ot-input: #027990;
+  --bd-input: 
+  rgba(73, 80, 87, 0.3);
+  --tt-placeholder: 
+  rgba(73, 80, 87, 0.5);
+  --bg-input: rgba(220, 226, 233, 1);
+  
+  --tt-button: 
+  rgba(255, 255, 255, 1);
+  --bg-button: 
+  rgba(2, 121, 157, 1);
+  --bg-button-hover: 
+  rgb(23, 89, 109);
+  
+  --bg-error: 
+  rgba(240, 62, 62, 1);
+  --tt-error: rgba(255, 255, 255, 1);
+
+  --bg-modal: rgba(0, 0, 0, 0.7);
+  --bg-color: 
+  rgba(4, 9, 36, 1);
+}
+
+
+body {
+  background-color: var(--bg-color);
+  font-family: 'Roboto', sans-serif;
+}
+
+body, input, button{
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
+
+.container{
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.card{
+  padding: 4.8rem 6.4rem;
+  background: white;
+
+  box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.1);
+  border-radius: .6rem;
+
+  /* Largura máxima */
+  max-width: 42.8rem;
+
+  /* Centralizar horizontal */
+  margin-inline: auto;
+}
+
+.title {
+  font-size: 3.2rem;
+  line-height: 4.0rem;
+  color: var(--tt-heading);
+}
+
+form{
+  width: 30rem;
+}
+
+form h1 {
+  margin-bottom: 3.2rem;
+}
+
+form label {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  color: var(--tt-label);
+
+  /* Label tem uma pré definição de display:inline, precisa mudar pra display block pra aceitar alterações de margin */
+  display: block;
+  margin-bottom: .8rem;
+}
+
+form input {
+  width: 100%;
+  padding: 1.6rem;
+  border-radius: .4rem;
+
+  border: 1px solid var(--bd-input);
+  background-color: var(--bg-input);
+}
+
+form input:focus{
+  outline: 2px solid var(--ot-input);
+}
+
+form input::placeholder{
+  color: var(--tt-placeholder);
+}
+
+.input-wrapper + .input-wrapper {
+  margin-top: 1.6rem;
+}
+
+form button {
+  margin-top: 3.2rem;
+  padding: 1.6rem;
+  width: 100%;
+  gap: .8rem;
+
+  border-radius: .4rem;
+  border: none;
+
+  background-color: var(--bg-button);
+  color: var(--tt-button);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  /* Transição da mudança do background quando o ponteiro está em cima */
+  transition: background .3s;
+}
+
+form button:hover{
+  background-color: var(--bg-button-hover);
+}
+
+/* MODAL */
+.modal-wrapper.open{
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-wrapper{
+  position: absolute;
+  /* inset:0 significa o mesmo que top:0, botton:0, left:0 e right:0 */
+  inset: 0;
+  background-color: var(--bg-modal);
+
+  display: grid;
+  place-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal{
+  position: relative;
+}
+
+.modal button{
+  background: none;
+  border: none;
+
+  /* Esse absoluto é relativo ao modal anterior */
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+
+  cursor: pointer;
+
+  transition: transform .3s;
+}
+
+.modal button:hover{
+  transform: scale(1.1);
+}
+
+/* Alert Error */
+
+.alert-error.open{
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.alert-error{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  background-color: var(--bg-error);
+  color: var(--tt-error);
+
+  text-align: center;
+  color: var(--tt-error);
+  font-weight: bold;
+
+  padding: .8rem 0;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transform: translateY(-30px);
+  transition: transform .5s;
+}
